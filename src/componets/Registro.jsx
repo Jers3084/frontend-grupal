@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState } from "react";
 
 export const Registro = () => {
+  const [nombre, setNombre] = useState("");
+  const [correo, setCorreo] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [id, setId] = useState("");
+
   return (
-    <div className='container'>
-       <form className="row g-3 needs-validation" noValidate>
+    <div className="container">
+      <form className="row g-3 needs-validation" noValidate>
         <div className="col-md-4">
           <label htmlFor="validationCustom01" className="form-label">
             Nombre
@@ -13,7 +19,10 @@ export const Registro = () => {
             className="form-control"
             id="validationCustom01"
             defaultValue=""
-            placeholder='Nombre'
+            placeholder="Nombre"
+            onChange={(e) => {
+              setNombre(e.target.value);
+            }}
           />
           <div className="valid-feedback">Looks good!</div>
         </div>
@@ -22,12 +31,15 @@ export const Registro = () => {
             E-mail
           </label>
           <input
-            type='email'
+            type="email"
             className="form-control"
             id="validationCustom02"
             defaultValue=""
-            placeholder='Correo electronico'
+            placeholder="Correo electronico"
             required
+            onChange={(e) => {
+              setCorreo(e.target.value);
+            }}
           />
           <div className="valid-feedback">Looks good!</div>
         </div>
@@ -36,13 +48,16 @@ export const Registro = () => {
             Username
           </label>
           <div className="input-group has-validation">
-             <input
+            <input
               type="text"
               className="form-control"
               id="validationCustomUsername"
               aria-describedby="inputGroupPrepend"
-              placeholder='Username'
+              placeholder="Username"
               required
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
             />
             <div className="invalid-feedback">Please choose a username.</div>
           </div>
@@ -53,17 +68,20 @@ export const Registro = () => {
           </label>
           <div className="input-group has-validation">
             <input
-              type='password'
+              type="password"
               className="form-control"
               id="validationCustomPassword"
               aria-describedby="inputGroupPrepend"
-              placeholder='Password'
+              placeholder="Password"
               required
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             />
             <div className="invalid-feedback">Please choose a username.</div>
           </div>
         </div>
-                
+
         <div className="col-12">
           <button className="btn btn-primary" type="submit">
             Registrar datos
@@ -71,5 +89,5 @@ export const Registro = () => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
