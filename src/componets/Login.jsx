@@ -13,7 +13,8 @@ export const Login = () => {
             readOnly
             className="form-control-plaintext"
             id="staticEmail2"
-            defaultValue="email@example.com"
+            defaultValue=""
+            placeholder="Username"
           />
         </div>
         <div className="col-auto">
