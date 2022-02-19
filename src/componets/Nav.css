@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  background-color: #006497;
 }
 
 .navbar-list {
@@ -32,6 +33,7 @@
   font-size: 25px;
   text-decoration: none;
   font-weight: bold;
+  color: white;
 }
 
 .navbar-font:hover {
@@ -39,23 +41,23 @@
   font-size: 25px;
   text-decoration: none;
   font-weight: bold;
-  color: chocolate;
+  color: #0082b4;
 }
 
 .container-logo {
   padding-left: 10px;
-  padding-top: 2px;
+  padding-top: 15px;
   height: 80px;
 }
 
 .logo {
-  border-color: darkorange;
+  border-color: #0082b4;
   border-radius: 50%;
 }
 
 .logo:hover {
   transition-duration: 0.5s;
-  border: chocolate 3px solid;
+  border: #0082b4 3px solid;
 }
 
 .menu-boton {

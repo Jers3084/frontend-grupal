@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Styles/Styles.css'
 
 export const Login = () => {
   const [username, setUsername] = useState("");
@@ -9,7 +10,7 @@ export const Login = () => {
     enviarLogin();
     setUsername("");
     setPassword("");
-    document.getElementById("inputUsername").value = "";
+    document.getElementById("userN").value = "";
     document.getElementById("inputPassword").value = "";
   };
 
@@ -29,17 +30,17 @@ export const Login = () => {
   };
 
   return (
-    <div className="container">
-      <form className="row g-3">
-        <div className="col-auto">
-          <label htmlFor="staticEmail2" className="visually-hidden">
+    <div className="contenedor">
+      <form className="formato">
+        <div className="fullentry">
+          <label htmlFor="userN" className='form-label'>
             Username
           </label>
           <input
             type="text"
             readOnly
-            className="form-control-plaintext"
-            id="staticEmail2"
+            className="form-control"
+            id="userN"
             defaultValue=""
             placeholder="Username"
             onChange={(e) => {
@@ -47,23 +48,23 @@ export const Login = () => {
             }}
           />
         </div>
-        <div className="col-auto">
-          <label htmlFor="inputPassword2" className="visually-hidden">
+        <div className="fullentry">
+          <label htmlFor="inputPassword" className="form-label">
             Password
           </label>
           <input
             type="password"
             className="form-control"
-            id="inputPassword2"
+            id="inputPassword"
             placeholder="Password"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
           />
         </div>
-        <div className="col-auto">
-          <button type="submit" className="btn btn-primary mb-3">
-            Confirm identity
+        <div className="contenBoton">
+          <button type="submit" className="boton">
+            Login
           </button>
         </div>
       </form>

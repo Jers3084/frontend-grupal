@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Styles/Styles.css'
 
 export const Registro = () => {
   const [nombre, setNombre] = useState("");
@@ -39,12 +40,12 @@ export const Registro = () => {
   };
 
   return (
-    <div className="container">
+    <div className="contenedor">
       <form
-        className="row g-3 needs-validation"
+        className="formato"
         onSubmit={handleSubmitr}
-        noValidate>
-        <div className="col-md-4">
+        >
+        <div className="fullentry">
           <label htmlFor="validationCustom01" className="form-label">
             Nombre
           </label>
@@ -58,9 +59,9 @@ export const Registro = () => {
               setNombre(e.target.value);
             }}
           />
-          <div className="valid-feedback">Looks good!</div>
         </div>
-        <div className="col-md-4">
+
+        <div className="fullentry">
           <label htmlFor="validationCustom02" className="form-label">
             E-mail
           </label>
@@ -75,13 +76,12 @@ export const Registro = () => {
               setCorreo(e.target.value);
             }}
           />
-          <div className="valid-feedback">Looks good!</div>
         </div>
-        <div className="col-md-4">
+
+        <div className="fullentry">
           <label htmlFor="validationCustomUsername" className="form-label">
             Username
           </label>
-          <div className="input-group has-validation">
             <input
               type="text"
               className="form-control"
@@ -93,14 +93,12 @@ export const Registro = () => {
                 setUsername(e.target.value);
               }}
             />
-            <div className="invalid-feedback">Please choose a username.</div>
-          </div>
         </div>
-        <div className="col-md-4">
+
+        <div className="fullentry">
           <label htmlFor="validationCustomUsername" className="form-label">
             Password
           </label>
-          <div className="input-group has-validation">
             <input
               type="password"
               className="form-control"
@@ -112,12 +110,10 @@ export const Registro = () => {
                 setPassword(e.target.value);
               }}
             />
-            <div className="invalid-feedback">Please choose a username.</div>
-          </div>
         </div>
 
-        <div className="col-12">
-          <button className="btn btn-primary" type="submit">
+        <div className="contenBoton">
+          <button className="boton" type="submit">
             Registrar datos
           </button>
         </div>
