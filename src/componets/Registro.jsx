@@ -7,9 +7,43 @@ export const Registro = () => {
   const [password, setPassword] = useState("");
   const [id, setId] = useState("");
 
+  const handleSubmitr = (e) => {
+    e.preventDefault();
+    enviarRegistro();
+    setNombre("");
+    setCorreo("");
+    setUsername("");
+    setPassword("");
+    document.getElementById("inputNombre").value = "";
+    document.getElementById("inputEmail").value = "";
+    document.getElementById("inputUsername").value = "";
+    document.getElementById("inputPassword").value = "";
+    alert("Registro Enviado");
+  };
+
+  const enviarRegistro = async () => {
+    const registroGuardar = {
+      nombre,
+      correo,
+      username,
+      password,
+    };
+    try {
+      /* const DB = collection(dbConfig, "proy4-reservas");
+     const item = await addDoc(DB, reservaAGuardar);
+     setReservacion([...reservacion, { id: item.id, nombre, correo, telefono, numpersonas, fecha }]);*/
+    } catch (e) {
+      console.log("hubo un error");
+      console.log(e);
+    }
+  };
+
   return (
     <div className="container">
-      <form className="row g-3 needs-validation" noValidate>
+      <form
+        className="row g-3 needs-validation"
+        onSubmit={handleSubmitr}
+        noValidate>
         <div className="col-md-4">
           <label htmlFor="validationCustom01" className="form-label">
             Nombre
@@ -17,7 +51,7 @@ export const Registro = () => {
           <input
             type="text"
             className="form-control"
-            id="validationCustom01"
+            id="inputNombre"
             defaultValue=""
             placeholder="Nombre"
             onChange={(e) => {
@@ -33,7 +67,7 @@ export const Registro = () => {
           <input
             type="email"
             className="form-control"
-            id="validationCustom02"
+            id="inputEmail"
             defaultValue=""
             placeholder="Correo electronico"
             required
@@ -51,7 +85,7 @@ export const Registro = () => {
             <input
               type="text"
               className="form-control"
-              id="validationCustomUsername"
+              id="inputUsername"
               aria-describedby="inputGroupPrepend"
               placeholder="Username"
               required
@@ -70,7 +104,7 @@ export const Registro = () => {
             <input
               type="password"
               className="form-control"
-              id="validationCustomPassword"
+              id="inputPassword"
               aria-describedby="inputGroupPrepend"
               placeholder="Password"
               required
