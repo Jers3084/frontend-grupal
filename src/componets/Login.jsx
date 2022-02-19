@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import './Styles/Styles.css'
+import "./Styles/Styles.css";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmitr = (e) => {
+  const handleSubmitl = (e) => {
     e.preventDefault();
     enviarLogin();
     setUsername("");
@@ -15,10 +15,12 @@ export const Login = () => {
   };
 
   const enviarLogin = async () => {
-    const registroGuardarL = {
+    const registroLogin = {
       username,
       password,
     };
+    console.log(registroLogin);
+
     try {
       /* const DB = collection(dbConfig, "proy4-reservas");
        const item = await addDoc(DB, reservaAGuardar);
@@ -31,14 +33,13 @@ export const Login = () => {
 
   return (
     <div className="contenedor">
-      <form className="formato">
+      <form className="formato"  onSubmit={handleSubmitl} >
         <div className="fullentry">
-          <label htmlFor="userN" className='form-label'>
+          <label htmlFor="userN" className="form-label">
             Username
           </label>
           <input
             type="text"
-            readOnly
             className="form-control"
             id="userN"
             defaultValue=""

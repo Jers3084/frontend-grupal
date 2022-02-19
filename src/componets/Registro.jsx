@@ -29,6 +29,7 @@ export const Registro = () => {
       username,
       password,
     };
+    console.log(registroGuardar);
     try {
       /* const DB = collection(dbConfig, "proy4-reservas");
      const item = await addDoc(DB, reservaAGuardar);
