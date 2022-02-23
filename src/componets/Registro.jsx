@@ -31,9 +31,11 @@ export const Registro = () => {
     };
     console.log(registroGuardar);
     try {
-      /* const DB = collection(dbConfig, "proy4-reservas");
-     const item = await addDoc(DB, reservaAGuardar);
-     setReservacion([...reservacion, { id: item.id, nombre, correo, telefono, numpersonas, fecha }]);*/
+        const login = async (registroLogin) => {
+          const response = await fetch()
+          .then(response => response.json())
+          .then(data => {console.log(data)})
+        }
     } catch (e) {
       console.log("hubo un error");
       console.log(e);
