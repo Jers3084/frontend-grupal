@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import './Styles/Styles.css'
+import "./Styles/Styles.css";
 
 export const Registro = () => {
   const [nombre, setNombre] = useState("");
   const [correo, setCorreo] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [id, setId] = useState("");
 
   const handleSubmitr = (e) => {
     e.preventDefault();
@@ -31,11 +30,13 @@ export const Registro = () => {
     };
     console.log(registroGuardar);
     try {
-        const login = async (registroLogin) => {
-          const response = await fetch()
-          .then(response => response.json())
-          .then(data => {console.log(data)})
-        }
+      const login = async (registroLogin) => {
+        const response = await fetch()
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+          });
+      };
     } catch (e) {
       console.log("hubo un error");
       console.log(e);
@@ -44,10 +45,7 @@ export const Registro = () => {
 
   return (
     <div className="contenedor">
-      <form
-        className="formato"
-        onSubmit={handleSubmitr}
-        >
+      <form className="formato" onSubmit={handleSubmitr}>
         <div className="fullentry">
           <label htmlFor="validationCustom01" className="form-label">
             Nombre
@@ -85,34 +83,34 @@ export const Registro = () => {
           <label htmlFor="validationCustomUsername" className="form-label">
             Username
           </label>
-            <input
-              type="text"
-              className="form-control"
-              id="inputUsername"
-              aria-describedby="inputGroupPrepend"
-              placeholder="Username"
-              required
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            />
+          <input
+            type="text"
+            className="form-control"
+            id="inputUsername"
+            aria-describedby="inputGroupPrepend"
+            placeholder="Username"
+            required
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
         </div>
 
         <div className="fullentry">
           <label htmlFor="validationCustomUsername" className="form-label">
             Password
           </label>
-            <input
-              type="password"
-              className="form-control"
-              id="inputPassword"
-              aria-describedby="inputGroupPrepend"
-              placeholder="Password"
-              required
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
+          <input
+            type="password"
+            className="form-control"
+            id="inputPassword"
+            aria-describedby="inputGroupPrepend"
+            placeholder="Password"
+            required
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
         </div>
 
         <div className="contenBoton">

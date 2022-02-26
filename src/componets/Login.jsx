@@ -7,35 +7,32 @@ export const Login = () => {
 
   const handleSubmitl = (e) => {
     e.preventDefault();
-    enviarLogin();
+    (async () => {
+      const registroLogin = { username, password };
+      try {
+        const response = await fetch(
+          "35.192.83.171:3500/api/usuarios/login",
+          {}
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+          });
+      } catch (e) {
+        console.log("hubo un error");
+        console.log(e);
+      }
+    })();
+
     setUsername("");
     setPassword("");
     document.getElementById("userN").value = "";
     document.getElementById("inputPassword").value = "";
   };
 
-  const enviarLogin = async () => {
-    const registroLogin = {
-      username,
-      password,
-    };
-    console.log(registroLogin);
-
-    try {
-      const login = async (registroLogin) => {
-        const response = await fetch()
-        .then(response => response.json())
-        .then(data => {console.log(data)})
-      }
-    } catch (e) {
-      console.log("hubo un error");
-      console.log(e);
-    }
-  };
-
   return (
     <div className="contenedor">
-      <form className="formato"  onSubmit={handleSubmitl} >
+      <form className="formato" onSubmit={handleSubmitl}>
         <div className="fullentry">
           <label htmlFor="userN" className="form-label">
             Username
