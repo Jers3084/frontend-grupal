@@ -1,39 +1,59 @@
 import React, { useEffect, useState } from "react";
+import "./Styles/Styles.css";
 
 export const Listado = () => {
   const [listado, setListado] = useState([]);
+  const [boton, setBoton] = useState(false);
+  const token = sessionStorage.getItem("tokenUsuario");
 
-  const obtenerUsuarios = async () => {
+  useEffect(() => {
+    if (boton === true) {
+      if (token === null) {
+        setBoton(false);
+        return alert("No se ha registrado, se debe registrar primero");
+      }
+      buscar();
+    }
+  }, [boton]);
+
+  const buscar = async () => {
     try {
-      const response = await fetch("35.192.83.171:3500/api/usuarios", {
+      const response = await fetch("http://35.192.83.171:3500/api/usuarios", {
         method: "GET",
         headers: {
-          authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMTQ2Y2Q4OGNhZDQ5YzUyYmRjYmUxNCIsInVzZXJuYW1lIjoiZGllZ29tIiwiaWF0IjoxNjQ1NTg0NDQ3LCJleHAiOjE2NDU1ODgwNDd9.L52f3qrwWNpzWHQI2DYIDjS-5PXBU8beZ9GKv9bOdZQ",
+          "Content-Type": "application/json",
+          authorization: token,
         },
       })
         .then((response) => response.json())
-        .then((data) => {
-          return setListado(data.data);
-        });
+        .then((data) => setListado(data.data));
+      setBoton(false);
     } catch (e) {
       console.log("hubo un error");
       console.log(e);
     }
   };
 
-  useEffect(() => {
-    obtenerUsuarios();
-  }, []);
-
   return (
     <div>
+      <div className="contenBoton">
+        <button type="button" className="boton" onClick={() => setBoton(true)}>
+          Mostrar Usuarios
+        </button>
+      </div>
+
       <h1>Listado</h1>
-      <ul>
-        {listado.map((x) => {
-          <li key={x.id}>{x.username}</li>;
-        })}
-      </ul>
+
+      <div className="contenedorlistado">
+        <ul>
+          {listado.map((x) => (
+            <li key={x.id}>
+              {x.nombre}
+              {"_________"} {x.email}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

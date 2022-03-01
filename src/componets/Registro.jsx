@@ -3,40 +3,39 @@ import "./Styles/Styles.css";
 
 export const Registro = () => {
   const [nombre, setNombre] = useState("");
-  const [correo, setCorreo] = useState("");
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmitr = (e) => {
+  var token=sessionStorage.getItem("tokenUsuario");
+
+    const handleSubmitr = async (e) => {
     e.preventDefault();
-    enviarRegistro();
+    if (token===null) {
+      return alert("No se ha registrado, se debe registrar primero");
+     } 
+    await enviarRegistro();
     setNombre("");
-    setCorreo("");
+    setEmail("");
     setUsername("");
     setPassword("");
-    document.getElementById("inputNombre").value = "";
-    document.getElementById("inputEmail").value = "";
-    document.getElementById("inputUsername").value = "";
-    document.getElementById("inputPassword").value = "";
     alert("Registro Enviado");
   };
 
   const enviarRegistro = async () => {
-    const registroGuardar = {
-      nombre,
-      correo,
-      username,
-      password,
-    };
-    console.log(registroGuardar);
     try {
-      const login = async (registroLogin) => {
-        const response = await fetch()
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-          });
-      };
+      return fetch("http://35.192.83.171:3500/api/usuarios", {
+        method: "POST",
+        body: JSON.stringify({ nombre, email, username, password }), // data {object}
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          console.log(response);
+        });
     } catch (e) {
       console.log("hubo un error");
       console.log(e);
@@ -54,7 +53,7 @@ export const Registro = () => {
             type="text"
             className="form-control"
             id="inputNombre"
-            defaultValue=""
+            value={nombre}
             placeholder="Nombre"
             onChange={(e) => {
               setNombre(e.target.value);
@@ -70,11 +69,11 @@ export const Registro = () => {
             type="email"
             className="form-control"
             id="inputEmail"
-            defaultValue=""
+            value={email}
             placeholder="Correo electronico"
             required
             onChange={(e) => {
-              setCorreo(e.target.value);
+              setEmail(e.target.value);
             }}
           />
         </div>
@@ -90,6 +89,7 @@ export const Registro = () => {
             aria-describedby="inputGroupPrepend"
             placeholder="Username"
             required
+            value={username}
             onChange={(e) => {
               setUsername(e.target.value);
             }}
@@ -107,6 +107,7 @@ export const Registro = () => {
             aria-describedby="inputGroupPrepend"
             placeholder="Password"
             required
+            value={password}
             onChange={(e) => {
               setPassword(e.target.value);
             }}

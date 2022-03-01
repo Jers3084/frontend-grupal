@@ -14,6 +14,14 @@
   text-align: center;
 }
 
+.contenedorlistado {
+  width: 30%;
+  margin-right: auto;
+  margin-left: auto;
+  text-align:left;
+  border: #fff 3px solid;
+}
+
 .formato {
   width: 50%;
   margin: 0px auto;
@@ -52,6 +60,11 @@
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
     border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.boton:hover {
+  background-color: #000397;
+  border: 1px solid #000397;
 }
 
 .nav-style {
@@ -119,6 +132,10 @@
     width: 100%;
   }
 
+  .contenedorlistado {
+    width: 100%;
+  }
+
   .formato {
     width: 100%;
   }
@@ -151,11 +168,19 @@
    .navbar-font {
      font-size: 25px;
    }
+
+   .contenedorlistado {
+    width: 90%;
+  }
  }
  
 @media screen and (max-width: 992px) {
   .contenedor {
     width: 100%;
+  }
+
+  .contenedorlistado {
+    width: 80%;
   }
 
   .formato {

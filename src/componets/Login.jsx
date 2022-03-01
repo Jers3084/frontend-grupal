@@ -4,30 +4,43 @@ import "./Styles/Styles.css";
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  var registro = "";
+  var usuario = sessionStorage.getItem("cuentaUsuario");
+  var token=sessionStorage.getItem("tokenUsuario");
 
-  const handleSubmitl = (e) => {
+  if (token === null) {
+    registro = "No se ha registrado";
+  } else {
+    registro = "Ya esta Registrado con el usuario: " + usuario;
+  }
+
+  const handleSubmitl = async (e) => {
     e.preventDefault();
-    (async () => {
-      const registroLogin = { username, password };
-      try {
-        const response = await fetch(
-          "35.192.83.171:3500/api/usuarios/login",
-          {}
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-          });
-      } catch (e) {
-        console.log("hubo un error");
-        console.log(e);
-      }
-    })();
-
+    await enviarLogin();
     setUsername("");
     setPassword("");
-    document.getElementById("userN").value = "";
-    document.getElementById("inputPassword").value = "";
+  };
+
+  const enviarLogin = async () => {
+    try {
+      return fetch("http://35.192.83.171:3500/api/usuarios/login", {
+        method: "POST", // or 'PUT'
+        body: JSON.stringify({ username, password }), // data can be `string` or {object}!
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          const tokenU = response.data.token;
+          const cUsuario = response.data.user.username;
+          sessionStorage.setItem("tokenUsuario", tokenU);
+          sessionStorage.setItem("cuentaUsuario", cUsuario);
+        });
+    } catch (e) {
+      console.log("hubo un error");
+      console.log(e);
+    }
   };
 
   return (
@@ -41,7 +54,7 @@ export const Login = () => {
             type="text"
             className="form-control"
             id="userN"
-            defaultValue=""
+            value={username}
             placeholder="Username"
             onChange={(e) => {
               setUsername(e.target.value);
@@ -57,6 +70,7 @@ export const Login = () => {
             className="form-control"
             id="inputPassword"
             placeholder="Password"
+            value={password}
             onChange={(e) => {
               setPassword(e.target.value);
             }}
@@ -66,6 +80,7 @@ export const Login = () => {
           <button type="submit" className="boton">
             Login
           </button>
+          {<p>{registro}</p>}
         </div>
       </form>
     </div>

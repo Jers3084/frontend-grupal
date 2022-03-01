@@ -36,6 +36,9 @@ export const Nav = () => {
             </Link>
           </li>
         </ul>
+        <div>
+          <p>Usuario:</p>
+        </div>
       </nav>
     </div>
   );
